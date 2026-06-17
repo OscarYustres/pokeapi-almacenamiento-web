@@ -2,7 +2,7 @@ async function buscarPersonajes() {
 
     try{
 
-        const response = await fetch('https://thesimpsonsapi.com/api');
+        const response = await fetch(': https://pokeapi.co/api/v2/pokemon/api');
         
         if(!response.ok) throw new Error('Error al conectar con API');
         const data = await response.json()
@@ -29,8 +29,8 @@ function crearTarjetas(informacionDePersonajes) {
     for(let personaje of informacionDePersonajes){
         let tarjeta = document.createElement('div');
         tarjeta.innerHTML = `
-        <div class="simpson-tarjeta">
-                    <img src="https://cdn.thesimpsonsapi.com/200${personaje.portrait_path}" alt="image${personaje.name}">
+        <div class="pokemon-tarjeta">
+                    <img src="https://cdn.thepokemonapi.com/200${personaje.portrait_path}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
                     <p class="ocupacion">${personaje.occupation}</p>
                     <p class="frase">${personaje.phrases.length != 0 ? personaje.phrases[0] : 'No tengo frase'}</p>
@@ -50,6 +50,7 @@ const botonBuscar = document.getElementById('boton-buscar');
 botonBuscar.addEventListener('click', buscarPersonaje);
 
 function buscarPersonaje(){
+    console.log("buscarpersonaje");
     const inputBusqueda = document.getElementById('nombre-personaje');
     console.log("Se ejecuto el evento correctamente");
 
@@ -80,8 +81,8 @@ function crearTarjetaPersonajeEncontrado(listaPersonajes){
         let tarjeta = document.createElement('div');
 
         tarjeta.innerHTML = `
-        <div class="simpson-tarjeta-busqueda">
-                    <img src="https://cdn.thesimpsonsapi.com/200${personaje.portrait_path}" alt="image${personaje.name}">
+        <div class="pokemon-tarjeta-busqueda">
+                    <img src="https://cdn.thepokemonapi.com/200${personaje.portrait_path}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
                     <p class="ocupacion">${personaje.occupation}</p>
                     <p class="frase">${personaje.phrases.length != 0 ? personaje.phrases[0] : 'No tengo frase'}</p>
@@ -98,7 +99,7 @@ const botonBorrarResultado = document.getElementById('boton-borrar-resultados');
 botonBorrarResultado.addEventListener('click', limpiarResultados);
 
 function limpiarResultados(){
-    const listaTarjetasBusqueda = document.querySelectorAll('.simpson-tarjeta-busqueda');
+    const listaTarjetasBusqueda = document.querySelectorAll('.pokemon-tarjeta-busqueda');
     
     listaTarjetasBusqueda.forEach(tarjeta => {
         tarjeta.remove();
