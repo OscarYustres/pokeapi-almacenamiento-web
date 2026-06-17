@@ -1,3 +1,7 @@
+
+console.log("Hola");
+
+
 async function buscarPersonajes() {
     try {
         console.log("Buscando Pokémon...");
@@ -41,7 +45,10 @@ function crearTarjetas(informacionDePersonajes) {
     for(let personaje of informacionDePersonajes){
         let tarjeta = document.createElement('div');
         tarjeta.innerHTML = `
+
         <div class="pokemon-tarjeta">
+        <div class="simpson-tarjeta">
+
                     <img src="${personaje.image}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
                     
@@ -78,7 +85,10 @@ function crearTarjetaPersonajeEncontrado(listaPersonajes){
     for (let personaje of listaPersonajes) {
         let tarjeta = document.createElement('div');
         tarjeta.innerHTML = `
+
         <div class="pokemon-tarjeta-busqueda">
+        <div class="simpson-tarjeta-busqueda">
+
                     <img src="${personaje.image}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
                     

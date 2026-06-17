@@ -1,61 +1,83 @@
-*{
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
+* {
+    .poppins-regular {
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
 }
 
-header, body{
-    background-color: rgb(124, 255, 255);
+header,
+body {
+    background-color: rgb(221, 45, 213);
     padding: 2rem;
 }
 
-.section-contenido{
-border: 2px solid black;
-border-radius: 20px;
-box-sizing: border-box;
-padding: 20px;
-text-align: center;
-background-color: white;
+h1{
+    text-align: center;
+    }
+
+
+.section-contenido {
+    border: 2px solid black;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: center;
+    background-color: rgb(52, 197, 222);
 }
 
-#barra-de-busqueda{
+#barra-de-busqueda {
     margin: 20px auto;
     border: 1px solid yellow;
     border-radius: 20px;
-    background-color:rgb(124, 255, 255) ;
+    background-color: rgb(124, 255, 255);
     box-shadow: 0 0 10px black;
     padding: 20px;
     width: fit-content;
     font-weight: 700;
 }
 
-.container-tarjetas{
+.container-tarjetas {
     display: flex;
     flex-flow: row wrap;
     overflow: hidden;
     justify-content: center;
 }
 
+
 .pokemon-tarjeta, .pokemon-tarjeta-busqueda {
+
+.simpson-tarjeta,
+.simpson-tarjeta-busqueda {
     display: flex;
     flex-direction: column;
-    max-width: 300px;
-    min-width: 300px;
-    height: 310px;
-    border: 2px solid yellow;
+    max-width: 410px;
+    min-width: 410px;
+    height: 410px;
+    border: 5px solid grey;
     border-radius: 20px;
     overflow: hidden;
-    background-color:rgb(124, 255, 255) ;
+    background-color: rgb(224, 17, 72);
     padding: 10px;
-    gap: 1px;
+    gap: 3px;
     align-items: center;
     box-shadow: 0 0 10px black;
-    margin: 15px;
+    margin: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;   
 }
+
 .pokemon-tarjeta:hover{
+
+
+.simpson-tarjeta:hover {
     min-height: 300px;
     height: fit-content;
     box-shadow: 0 0 20px yellow;
 }
+
 .pokemon-tarjeta .nombre{
     font-weight: bold;
 }
@@ -64,21 +86,34 @@ background-color: white;
     text-align: center;
 }
 .pokemon-tarjeta img{
-    margin-bottom: 5px;
-    border-radius: 20px;
-    border: 1px solid white;
+
+.simpson-tarjeta .nombre {
+    font-weight: bold;
 }
 
-#container-tarjetas-busqueda{
+.simpson-tarjeta p {
+    margin: 0;
+    text-align: center;
+}
+
+.simpson-tarjeta img {
+    margin-bottom: 5px;
+    border-radius: 20px;
+    border: 1px solid rgb(221, 15, 15);
+}
+
+#container-tarjetas-busqueda {
     display: flex;
     flex-flow: row wrap;
     overflow: hidden;
     justify-content: center;
 }
 
+
 .pokemon-tarjeta-busqueda{
     background-color: rgb(249, 131, 131);
 }
 
-
-
+.simpson-tarjeta-busqueda {
+    background-color: rgb(114, 234, 9);
+}
