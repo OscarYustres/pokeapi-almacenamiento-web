@@ -45,8 +45,6 @@ h1{
 }
 
 
-.pokemon-tarjeta, .pokemon-tarjeta-busqueda {
-
 .simpson-tarjeta,
 .simpson-tarjeta-busqueda {
     display: flex;
@@ -69,8 +67,12 @@ h1{
     object-position: center;   
 }
 
-.pokemon-tarjeta:hover{
 
+.pokemon-tarjeta:hover{
+  min-height: 300px;
+    height: fit-content;
+    box-shadow: 0 0 20px yellow;
+}
 
 .simpson-tarjeta:hover {
     min-height: 300px;
@@ -86,7 +88,10 @@ h1{
     text-align: center;
 }
 .pokemon-tarjeta img{
-
+    margin-bottom: 5px;
+    border-radius: 20px;
+    border: 1px solid white;
+}
 .simpson-tarjeta .nombre {
     font-weight: bold;
 }
