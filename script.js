@@ -1,5 +1,8 @@
 
 
+console.log("Hola");
+
+
 
 async function buscarPersonajes() {
     try {
@@ -39,14 +42,15 @@ async function buscarPersonajes() {
         return [];
     }
 }
-
 function crearTarjetas(informacionDePersonajes) {
     const containerTarjetas = document.querySelector('.container-tarjetas');
-
     for(let personaje of informacionDePersonajes){
         let tarjeta = document.createElement('div');
         tarjeta.innerHTML = `
-        <div class="simpson-tarjeta">
+
+        <div class="pokemon-tarjeta">
+        <div class="pokemon-tarjeta">
+
                     <img src="${personaje.image}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
                     
@@ -56,43 +60,31 @@ function crearTarjetas(informacionDePersonajes) {
 }
 
 
-
 const listaPersonajes = await buscarPersonajes();
-
 crearTarjetas(listaPersonajes);
-
 const botonBuscar = document.getElementById('boton-buscar');
-
 botonBuscar.addEventListener('click', buscarPersonaje);
-
 function buscarPersonaje(){
     console.log("Hola buscar pokemon");
     
     const inputBusqueda = document.getElementById('nombre-personaje');
     console.log("Se ejecuto el evento correctamente");
-
     console.log(inputBusqueda.value);
-
     const textoIngresado = inputBusqueda.value.trim().toLowerCase();
-
     if(textoIngresado != ""){
-
         const personajesEncontrados = listaPersonajes.filter(personaje => 
             personaje.name?.toLowerCase().includes(textoIngresado));
-
             console.log(personajesEncontrados);
-
             crearTarjetaPersonajeEncontrado(personajesEncontrados);
-
     }else{
         console.log("No se ingreso ningun nombre de personaje");
         
     }
         
 }
-
 function crearTarjetaPersonajeEncontrado(listaPersonajes){
     const containerResultadosBusqueda = document.getElementById('container-tarjetas-busqueda');
+
     containerResultadosBusqueda.innerHTML = ""; // Limpia búsquedas previas
 
     for (let personaje of listaPersonajes) {
@@ -100,16 +92,24 @@ function crearTarjetaPersonajeEncontrado(listaPersonajes){
 
         tarjeta.style.position = "relative";
 
+
+    for (let personaje of listaPersonajes) {
+        let tarjeta = document.createElement('div');
+
         tarjeta.innerHTML = `
-        <div class="simpson-tarjeta-busqueda">
+
+        <div class="pokemon-tarjeta-busqueda">
+        <div class="pokemon-tarjeta-busqueda">
+
                     <button class="btn-corazon" style="position: absolute; top: 10px; right: 10px; background: white; border: 1px solid black; border-radius: 50%; font-size: 20px; cursor: pointer; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; z-index: 10;">
                         🤍
                     </button>
+
+
                     <img src="${personaje.image}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
                     
                 </div>`
-
         containerResultadosBusqueda.append(tarjeta);
 
         // >>> CORRECCIÓN AQUÍ: Moví este bloque adentro del ciclo para que reconozca la tarjeta que se acaba de crear.
@@ -118,20 +118,17 @@ function crearTarjetaPersonajeEncontrado(listaPersonajes){
             guardarEnFavoritos(personaje, botonCorazon);
         });
     }
-
 }
-
 const botonBorrarResultado = document.getElementById('boton-borrar-resultados');
 
-
 botonBorrarResultado.addEventListener('click', limpiarResultados);
-
 function limpiarResultados(){
-    const listaTarjetasBusqueda = document.querySelectorAll('.simpson-tarjeta-busqueda');
+    const listaTarjetasBusqueda = document.querySelectorAll('.pokemon-tarjeta-busqueda');
     
     listaTarjetasBusqueda.forEach(tarjeta => {
         tarjeta.remove();
     })
+
 
 }
 
@@ -153,7 +150,7 @@ function guardarEnFavoritos(pokemon,boton) {
             let tarjeta = document.createElement('div');
 
              tarjeta.innerHTML = `
-            <div class="simpson-tarjeta">
+            <div class="pokemon-tarjeta">
                 <img src="${pokemon.image}" alt="image${pokemon.name}">
                 <p class="nombre">${pokemon.name}</p>
                 
