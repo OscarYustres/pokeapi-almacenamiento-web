@@ -80,5 +80,9 @@ background-color: white;
     background-color: rgb(249, 131, 131);
 }
 
-
+.simpson-tarjeta img, .simpson-tarjeta-busqueda img {
+    width: 180px;
+    height: 180px;
+    object-fit: auto;
+}
 

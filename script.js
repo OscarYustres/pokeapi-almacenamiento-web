@@ -1,4 +1,4 @@
-console.log("Hola");
+
 
 
 async function buscarPersonajes() {
@@ -66,6 +66,8 @@ const botonBuscar = document.getElementById('boton-buscar');
 botonBuscar.addEventListener('click', buscarPersonaje);
 
 function buscarPersonaje(){
+    console.log("Hola buscar pokemon");
+    
     const inputBusqueda = document.getElementById('nombre-personaje');
     console.log("Se ejecuto el evento correctamente");
 
@@ -91,19 +93,30 @@ function buscarPersonaje(){
 
 function crearTarjetaPersonajeEncontrado(listaPersonajes){
     const containerResultadosBusqueda = document.getElementById('container-tarjetas-busqueda');
+    containerResultadosBusqueda.innerHTML = ""; // Limpia búsquedas previas
 
     for (let personaje of listaPersonajes) {
         let tarjeta = document.createElement('div');
 
+        tarjeta.style.position = "relative";
+
         tarjeta.innerHTML = `
         <div class="simpson-tarjeta-busqueda">
-                    <img src="https://cdn.thesimpsonsapi.com/200${personaje.portrait_path}" alt="image${personaje.name}">
+                    <button class="btn-corazon" style="position: absolute; top: 10px; right: 10px; background: white; border: 1px solid black; border-radius: 50%; font-size: 20px; cursor: pointer; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; z-index: 10;">
+                        🤍
+                    </button>
+                    <img src="${personaje.image}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
-                    <p class="ocupacion">${personaje.occupation}</p>
-                    <p class="frase">${personaje.phrases.length != 0 ? personaje.phrases[0] : 'No tengo frase'}</p>
+                    
                 </div>`
 
         containerResultadosBusqueda.append(tarjeta);
+
+        // >>> CORRECCIÓN AQUÍ: Moví este bloque adentro del ciclo para que reconozca la tarjeta que se acaba de crear.
+        const botonCorazon = tarjeta.querySelector('.btn-corazon');
+        botonCorazon.addEventListener('click', () => {
+            guardarEnFavoritos(personaje, botonCorazon);
+        });
     }
 
 }
@@ -137,6 +150,5 @@ function guardarEnFavoritos(pokemon,boton) {
     } else {
         console.log(`${pokemon.name} ya está en favoritos.`);
     }
-
 
 }
