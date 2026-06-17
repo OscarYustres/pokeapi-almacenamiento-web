@@ -43,10 +43,18 @@ h1{
     overflow: hidden;
     justify-content: center;
 }
+#favs{
+    display: flex;
+    flex-flow: row wrap;
+    overflow: hidden;
+    justify-content: center;
+}
 
+.pokemon-tarjeta, .pokemon-tarjeta-busqueda {
 
-.simpson-tarjeta,
-.simpson-tarjeta-busqueda {
+.pokemon-tarjeta,
+.pokemon-tarjeta-busqueda {
+
     display: flex;
     flex-direction: column;
     max-width: 410px;
@@ -74,7 +82,7 @@ h1{
     box-shadow: 0 0 20px yellow;
 }
 
-.simpson-tarjeta:hover {
+.pokemon-tarjeta:hover {
     min-height: 300px;
     height: fit-content;
     box-shadow: 0 0 20px yellow;
@@ -92,16 +100,16 @@ h1{
     border-radius: 20px;
     border: 1px solid white;
 }
-.simpson-tarjeta .nombre {
+.pokemon-tarjeta .nombre {
     font-weight: bold;
 }
 
-.simpson-tarjeta p {
+.pokemon-tarjeta p {
     margin: 0;
     text-align: center;
 }
 
-.simpson-tarjeta img {
+.pokemon-tarjeta img {
     margin-bottom: 5px;
     border-radius: 20px;
     border: 1px solid rgb(221, 15, 15);
@@ -119,6 +127,14 @@ h1{
     background-color: rgb(249, 131, 131);
 }
 
-.simpson-tarjeta-busqueda {
+.pokemon-tarjeta img, .pokemon-tarjeta-busqueda img {
+    width: 180px;
+    height: 180px;
+    object-fit: auto;
+}
+
+
+.pokemon-tarjeta-busqueda {
     background-color: rgb(114, 234, 9);
 }
+

@@ -1,5 +1,7 @@
 
+
 console.log("Hola");
+
 
 
 async function buscarPersonajes() {
@@ -47,7 +49,7 @@ function crearTarjetas(informacionDePersonajes) {
         tarjeta.innerHTML = `
 
         <div class="pokemon-tarjeta">
-        <div class="simpson-tarjeta">
+        <div class="pokemon-tarjeta">
 
                     <img src="${personaje.image}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
@@ -82,18 +84,39 @@ function buscarPersonaje(){
 }
 function crearTarjetaPersonajeEncontrado(listaPersonajes){
     const containerResultadosBusqueda = document.getElementById('container-tarjetas-busqueda');
+
+    containerResultadosBusqueda.innerHTML = ""; // Limpia búsquedas previas
+
     for (let personaje of listaPersonajes) {
         let tarjeta = document.createElement('div');
+
+        tarjeta.style.position = "relative";
+
+
+    for (let personaje of listaPersonajes) {
+        let tarjeta = document.createElement('div');
+
         tarjeta.innerHTML = `
 
         <div class="pokemon-tarjeta-busqueda">
-        <div class="simpson-tarjeta-busqueda">
+        <div class="pokemon-tarjeta-busqueda">
+
+                    <button class="btn-corazon" style="position: absolute; top: 10px; right: 10px; background: white; border: 1px solid black; border-radius: 50%; font-size: 20px; cursor: pointer; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; z-index: 10;">
+                        🤍
+                    </button>
+
 
                     <img src="${personaje.image}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
                     
                 </div>`
         containerResultadosBusqueda.append(tarjeta);
+
+        // >>> CORRECCIÓN AQUÍ: Moví este bloque adentro del ciclo para que reconozca la tarjeta que se acaba de crear.
+        const botonCorazon = tarjeta.querySelector('.btn-corazon');
+        botonCorazon.addEventListener('click', () => {
+            guardarEnFavoritos(personaje, botonCorazon);
+        });
     }
 }
 const botonBorrarResultado = document.getElementById('boton-borrar-resultados');
@@ -105,4 +128,41 @@ function limpiarResultados(){
     listaTarjetasBusqueda.forEach(tarjeta => {
         tarjeta.remove();
     })
+
+
+}
+
+function guardarEnFavoritos(pokemon,boton) {
+    let favoritosActuales = JSON.parse(localStorage.getItem('pokemonFavoritos')) || [];
+    const existe = favoritosActuales.some(fav => fav.id === pokemon.id);
+
+    if (!existe) {
+        favoritosActuales.push(pokemon);
+        localStorage.setItem('pokemonFavoritos', JSON.stringify(favoritosActuales));
+        boton.textContent = "❤️"; // Cambia el icono a relleno al guardar
+        console.log(`${pokemon.name} guardado en favoritos.`);
+    
+        const contenedorFavoritos = document.getElementById('favs');
+
+        contenedorFavoritos.innerHTML = "";
+
+        favoritosActuales.forEach(pokemon => {
+            let tarjeta = document.createElement('div');
+
+             tarjeta.innerHTML = `
+            <div class="pokemon-tarjeta">
+                <img src="${pokemon.image}" alt="image${pokemon.name}">
+                <p class="nombre">${pokemon.name}</p>
+                
+            </div>`
+
+            contenedorFavoritos.append(tarjeta);
+        });
+    } else {
+        console.log(`${pokemon.name} ya está en favoritos.`);
+        favoritosActuales = favoritosActuales.filter(fav => fav.id !== pokemon.id);
+        localStorage.setItem('pokemonFavoritos', JSON.stringify(favoritosActuales));
+        boton.textContent = "🤍";
+    }
+
 }
