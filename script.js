@@ -66,6 +66,8 @@ const botonBuscar = document.getElementById('boton-buscar');
 botonBuscar.addEventListener('click', buscarPersonaje);
 
 function buscarPersonaje(){
+    console.log("Hola buscar pokemon");
+    
     const inputBusqueda = document.getElementById('nombre-personaje');
     console.log("Se ejecuto el evento correctamente");
 
@@ -97,10 +99,9 @@ function crearTarjetaPersonajeEncontrado(listaPersonajes){
 
         tarjeta.innerHTML = `
         <div class="simpson-tarjeta-busqueda">
-                    <img src="https://cdn.thesimpsonsapi.com/200${personaje.portrait_path}" alt="image${personaje.name}">
+                    <img src="${personaje.image}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
-                    <p class="ocupacion">${personaje.occupation}</p>
-                    <p class="frase">${personaje.phrases.length != 0 ? personaje.phrases[0] : 'No tengo frase'}</p>
+                    
                 </div>`
 
         containerResultadosBusqueda.append(tarjeta);
