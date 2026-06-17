@@ -144,11 +144,28 @@ function guardarEnFavoritos(pokemon,boton) {
         localStorage.setItem('pokemonFavoritos', JSON.stringify(favoritosActuales));
         boton.textContent = "❤️"; // Cambia el icono a relleno al guardar
         console.log(`${pokemon.name} guardado en favoritos.`);
-        
-        // Muestra el nuevo favorito abajo invocando la función original sin modificarla
-        crearTarjetas(favoritosActuales);
+    
+        const contenedorFavoritos = document.getElementById('favs');
+
+        let favoritos = JSON.parse(localStorage.getItem('pokemonFavoritos')) || [];
+
+        contenedorFavoritos.innerHTML = "";
+
+        favoritos.forEach(pokemon => {
+            let tarjeta = document.createElement('div');
+
+             tarjeta.innerHTML = `
+            <div class="simpson-tarjeta">
+                <img src="${pokemon.image}" alt="image${pokemon.name}">
+                <p class="nombre">${pokemon.name}</p>
+                
+            </div>`
+
+            contenedorFavoritos.append(tarjeta);
+        });
     } else {
         console.log(`${pokemon.name} ya está en favoritos.`);
+        alert("Ya esta en favoritos")
     }
 
 }

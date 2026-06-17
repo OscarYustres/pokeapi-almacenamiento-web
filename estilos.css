@@ -35,6 +35,14 @@ background-color: white;
     justify-content: center;
 }
 
+
+#favs{
+    display: flex;
+    flex-flow: row wrap;
+    overflow: hidden;
+    justify-content: center;
+}
+
 .simpson-tarjeta, .simpson-tarjeta-busqueda {
     display: flex;
     flex-direction: column;
