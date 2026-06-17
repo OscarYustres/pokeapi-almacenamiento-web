@@ -1,3 +1,4 @@
+
 console.log("Hola");
 
 
@@ -39,14 +40,15 @@ async function buscarPersonajes() {
         return [];
     }
 }
-
 function crearTarjetas(informacionDePersonajes) {
     const containerTarjetas = document.querySelector('.container-tarjetas');
-
     for(let personaje of informacionDePersonajes){
         let tarjeta = document.createElement('div');
         tarjeta.innerHTML = `
+
+        <div class="pokemon-tarjeta">
         <div class="simpson-tarjeta">
+
                     <img src="${personaje.image}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
                     
@@ -56,69 +58,51 @@ function crearTarjetas(informacionDePersonajes) {
 }
 
 
-
 const listaPersonajes = await buscarPersonajes();
-
 crearTarjetas(listaPersonajes);
-
 const botonBuscar = document.getElementById('boton-buscar');
-
 botonBuscar.addEventListener('click', buscarPersonaje);
-
 function buscarPersonaje(){
     console.log("Hola buscar pokemon");
     
     const inputBusqueda = document.getElementById('nombre-personaje');
     console.log("Se ejecuto el evento correctamente");
-
     console.log(inputBusqueda.value);
-
     const textoIngresado = inputBusqueda.value.trim().toLowerCase();
-
     if(textoIngresado != ""){
-
         const personajesEncontrados = listaPersonajes.filter(personaje => 
             personaje.name?.toLowerCase().includes(textoIngresado));
-
             console.log(personajesEncontrados);
-
             crearTarjetaPersonajeEncontrado(personajesEncontrados);
-
     }else{
         console.log("No se ingreso ningun nombre de personaje");
         
     }
         
 }
-
 function crearTarjetaPersonajeEncontrado(listaPersonajes){
     const containerResultadosBusqueda = document.getElementById('container-tarjetas-busqueda');
-
     for (let personaje of listaPersonajes) {
         let tarjeta = document.createElement('div');
-
         tarjeta.innerHTML = `
+
+        <div class="pokemon-tarjeta-busqueda">
         <div class="simpson-tarjeta-busqueda">
+
                     <img src="${personaje.image}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
                     
                 </div>`
-
         containerResultadosBusqueda.append(tarjeta);
     }
-
 }
-
 const botonBorrarResultado = document.getElementById('boton-borrar-resultados');
 
-
 botonBorrarResultado.addEventListener('click', limpiarResultados);
-
 function limpiarResultados(){
-    const listaTarjetasBusqueda = document.querySelectorAll('.simpson-tarjeta-busqueda');
+    const listaTarjetasBusqueda = document.querySelectorAll('.pokemon-tarjeta-busqueda');
     
     listaTarjetasBusqueda.forEach(tarjeta => {
         tarjeta.remove();
     })
-
 }
