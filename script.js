@@ -147,11 +147,9 @@ function guardarEnFavoritos(pokemon,boton) {
     
         const contenedorFavoritos = document.getElementById('favs');
 
-        let favoritos = JSON.parse(localStorage.getItem('pokemonFavoritos')) || [];
-
         contenedorFavoritos.innerHTML = "";
 
-        favoritos.forEach(pokemon => {
+        favoritosActuales.forEach(pokemon => {
             let tarjeta = document.createElement('div');
 
              tarjeta.innerHTML = `
@@ -165,7 +163,9 @@ function guardarEnFavoritos(pokemon,boton) {
         });
     } else {
         console.log(`${pokemon.name} ya está en favoritos.`);
-        alert("Ya esta en favoritos")
+        favoritosActuales = favoritosActuales.filter(fav => fav.id !== pokemon.id);
+        localStorage.setItem('pokemonFavoritos', JSON.stringify(favoritosActuales));
+        boton.textContent = "🤍";
     }
 
 }
