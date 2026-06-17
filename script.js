@@ -1,26 +1,43 @@
+console.log("Hola");
+
+
 async function buscarPersonajes() {
-
-    try{
-
-        const response = await fetch('https://thesimpsonsapi.com/api');
+    try {
+        console.log("Buscando Pokémon...");
         
-        if(!response.ok) throw new Error('Error al conectar con API');
-        const data = await response.json()
-
-        const responsePersonajes = await fetch(data.characters);
-
-        if(!responsePersonajes.ok) throw new Error('Error al buscar los personajes');
+        // URL de la API de Pokémon
+        const url = "https://pokeapi.co/api/v2/pokemon?limit=151";
+        const response = await fetch(url);
         
-        const listaPersonajes = await responsePersonajes.json();
+        if (!response.ok) throw new Error('Error al conectar con la API');
         
-        return listaPersonajes.results;
+        const data = await response.json();
+        console.log(data);
         
-
-    }catch(error){
-        console.log('Hubo un error al buscar los personajes');
+        console.log("Pokémon encontrados:", data.results);
+        
+        // Obtener detalles de cada Pokémon
+        const pokemonesConDetalles = await Promise.all(
+            data.results.map(async (pokemon) => {
+                const detallesResponse = await fetch(pokemon.url);
+                const detalles = await detallesResponse.json();
+                return {
+                    name: pokemon.name,
+                    image: detalles.sprites.other["official-artwork"].front_default || detalles.sprites.front_default,
+                    id: detalles.id,
+                    types: detalles.types.map(t => t.type.name).join(', '),
+                    height: detalles.height,
+                    weight: detalles.weight
+                };
+            })
+        );
+        
+        return pokemonesConDetalles;
+        
+    } catch (error) {
+        console.error('Error al buscar Pokémon:', error);
         return [];
     }
-    
 }
 
 function crearTarjetas(informacionDePersonajes) {
@@ -30,10 +47,9 @@ function crearTarjetas(informacionDePersonajes) {
         let tarjeta = document.createElement('div');
         tarjeta.innerHTML = `
         <div class="simpson-tarjeta">
-                    <img src="https://cdn.thesimpsonsapi.com/200${personaje.portrait_path}" alt="image${personaje.name}">
+                    <img src="${personaje.image}" alt="image${personaje.name}">
                     <p class="nombre">${personaje.name}</p>
-                    <p class="ocupacion">${personaje.occupation}</p>
-                    <p class="frase">${personaje.phrases.length != 0 ? personaje.phrases[0] : 'No tengo frase'}</p>
+                    
                 </div>`
         containerTarjetas.append(tarjeta); 
     }
