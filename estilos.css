@@ -1,0 +1,84 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+header, body{
+    background-color: rgb(124, 255, 255);
+    padding: 2rem;
+}
+
+.section-contenido{
+border: 2px solid black;
+border-radius: 20px;
+box-sizing: border-box;
+padding: 20px;
+text-align: center;
+background-color: white;
+}
+
+#barra-de-busqueda{
+    margin: 20px auto;
+    border: 1px solid yellow;
+    border-radius: 20px;
+    background-color:rgb(124, 255, 255) ;
+    box-shadow: 0 0 10px black;
+    padding: 20px;
+    width: fit-content;
+    font-weight: 700;
+}
+
+.container-tarjetas{
+    display: flex;
+    flex-flow: row wrap;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.simpson-tarjeta, .simpson-tarjeta-busqueda {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    min-width: 300px;
+    height: 310px;
+    border: 2px solid yellow;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color:rgb(124, 255, 255) ;
+    padding: 10px;
+    gap: 1px;
+    align-items: center;
+    box-shadow: 0 0 10px black;
+    margin: 15px;
+}
+.simpson-tarjeta:hover{
+    min-height: 300px;
+    height: fit-content;
+    box-shadow: 0 0 20px yellow;
+}
+.simpson-tarjeta .nombre{
+    font-weight: bold;
+}
+.simpson-tarjeta p{
+    margin: 0;
+    text-align: center;
+}
+.simpson-tarjeta img{
+    margin-bottom: 5px;
+    border-radius: 20px;
+    border: 1px solid white;
+}
+
+#container-tarjetas-busqueda{
+    display: flex;
+    flex-flow: row wrap;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.simpson-tarjeta-busqueda{
+    background-color: rgb(249, 131, 131);
+}
+
+
+
