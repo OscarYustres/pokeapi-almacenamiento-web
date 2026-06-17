@@ -121,3 +121,22 @@ function limpiarResultados(){
     })
 
 }
+
+function guardarEnFavoritos(pokemon,boton) {
+    let favoritosActuales = JSON.parse(localStorage.getItem('pokemonFavoritos')) || [];
+    const existe = favoritosActuales.some(fav => fav.id === pokemon.id);
+
+    if (!existe) {
+        favoritosActuales.push(pokemon);
+        localStorage.setItem('pokemonFavoritos', JSON.stringify(favoritosActuales));
+        boton.textContent = "❤️"; // Cambia el icono a relleno al guardar
+        console.log(`${pokemon.name} guardado en favoritos.`);
+        
+        // Muestra el nuevo favorito abajo invocando la función original sin modificarla
+        crearTarjetas(favoritosActuales);
+    } else {
+        console.log(`${pokemon.name} ya está en favoritos.`);
+    }
+
+
+}
