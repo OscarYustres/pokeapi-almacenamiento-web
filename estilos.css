@@ -35,7 +35,7 @@ background-color: white;
     justify-content: center;
 }
 
-.simpson-tarjeta, .simpson-tarjeta-busqueda {
+.pokemon-tarjeta, .pokemon-tarjeta-busqueda {
     display: flex;
     flex-direction: column;
     max-width: 300px;
@@ -51,19 +51,19 @@ background-color: white;
     box-shadow: 0 0 10px black;
     margin: 15px;
 }
-.simpson-tarjeta:hover{
+.pokemon-tarjeta:hover{
     min-height: 300px;
     height: fit-content;
     box-shadow: 0 0 20px yellow;
 }
-.simpson-tarjeta .nombre{
+.pokemon-tarjeta .nombre{
     font-weight: bold;
 }
-.simpson-tarjeta p{
+.pokemon-tarjeta p{
     margin: 0;
     text-align: center;
 }
-.simpson-tarjeta img{
+.pokemon-tarjeta img{
     margin-bottom: 5px;
     border-radius: 20px;
     border: 1px solid white;
@@ -76,7 +76,7 @@ background-color: white;
     justify-content: center;
 }
 
-.simpson-tarjeta-busqueda{
+.pokemon-tarjeta-busqueda{
     background-color: rgb(249, 131, 131);
 }
 
